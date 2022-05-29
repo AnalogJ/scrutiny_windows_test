@@ -10,5 +10,8 @@ $tag = (Invoke-WebRequest -UseBasicParsing $releases | ConvertFrom-Json)[0].tag_
 
 $download = "https://github.com/$repo/releases/download/$tag/$file"
 
+
+New-Item -Path '/opt/scrutiny/bin/' -ItemType Directory
+
 Write-Host Dowloading latest release
 Invoke-WebRequest -UseBasicParsing $download -Out /opt/scrutiny/bin/$file
