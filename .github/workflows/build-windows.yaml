@@ -24,7 +24,7 @@ jobs:
       - name: Build and push console
         working-directory: .
         run: |
-          docker login -u ${{github.actor}} -p ${{ secrets.GITHUB_TOKEN }}
+          docker login ghcr.io -u ${{github.actor}} -p ${{ secrets.GITHUB_TOKEN }}
           docker build -t ghcr.io/analogj/scrutiny_windows_test .
           docker image push ghcr.io/analogj/scrutiny_windows_test
           docker logout
