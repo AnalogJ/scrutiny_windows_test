@@ -1,0 +1,24 @@
+name: Windows image build
+
+on:
+  push:
+    branches: [ master, beta ]
+
+
+# split into multiple builds, otherwise the runner runs out of disk space...
+# and docker-compose push fails with exitcode 1, so push manually
+jobs:
+  build:
+    permissions:
+      contents: read
+      packages: write
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@master
+      - name: Build and push console
+        working-directory: .
+        run: |
+          docker login -u ${{github.actor}} -p ${{ secrets.GITHUB_TOKEN }}
+          docker build -t ghcr.io/analogj/scrutiny_windows_test .
+          docker image push ghcr.io/analogj/scrutiny_windows_test
+          docker logout
