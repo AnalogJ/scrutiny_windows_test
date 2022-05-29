@@ -9,3 +9,6 @@ RUN powershell -Command \
     choco feature disable --name showDownloadProgress
 RUN choco install smartmontools -y
 RUN smartctl --help
+COPY scrutiny-collector-metrics.exe scrutiny-collector-metrics.exe
+
+RUN ./scrutiny-collector-metrics.exe --help
