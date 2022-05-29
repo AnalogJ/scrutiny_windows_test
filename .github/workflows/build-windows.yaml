@@ -2,7 +2,7 @@ name: Windows image build
 
 on:
   push:
-    branches: [ master, beta ]
+    branches: [ master, main ]
 
   workflow_dispatch:
     inputs:
