@@ -4,7 +4,13 @@ on:
   push:
     branches: [ master, beta ]
 
+  workflow_dispatch:
+    inputs:
 
+      version_metadata_path:
+        description: 'none'
+        required: false
+        default: 'none'
 # split into multiple builds, otherwise the runner runs out of disk space...
 # and docker-compose push fails with exitcode 1, so push manually
 jobs:
