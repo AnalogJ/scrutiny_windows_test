@@ -25,7 +25,7 @@ jobs:
         working-directory: .
         run: |
           docker login ghcr.io -u ${{github.actor}} -p ${{ secrets.GITHUB_TOKEN }}
-          docker build --build-arg WINDOWS_IMAGE_TAG=ltsc2019 -t ghcr.io/analogj/scrutiny_windows_test .
+          docker build --build-arg WINDOWS_IMAGE_TAG=ltsc2019 -t ghcr.io/analogj/scrutiny_windows_test:ltsc2019 .
           docker image push ghcr.io/analogj/scrutiny_windows_test:ltsc2019
           docker logout
 
@@ -40,6 +40,6 @@ jobs:
         working-directory: .
         run: |
           docker login ghcr.io -u ${{github.actor}} -p ${{ secrets.GITHUB_TOKEN }}
-          docker build --build-arg WINDOWS_IMAGE_TAG=ltsc2022 -t ghcr.io/analogj/scrutiny_windows_test .
+          docker build --build-arg WINDOWS_IMAGE_TAG=ltsc2022 -t ghcr.io/analogj/scrutiny_windows_test:ltsc2022 .
           docker image push ghcr.io/analogj/scrutiny_windows_test:ltsc2022
           docker logout
