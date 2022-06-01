@@ -11,7 +11,7 @@ RUN powershell -Command \
 RUN choco install smartmontools -y
 RUN smartctl --help
 
-COPY scrutiny-web-windows-4.0-amd64.exe /opt/scrutiny/bin/scrutiny-web-windows-4.0-amd64.exe
+COPY scrutiny-collector-metrics-windows-4.0-amd64.exe /opt/scrutiny/bin/scrutiny-collector-metrics-windows-4.0-amd64.exe
 
 #RUN powershell /opt/scrutiny/download-latest-release-asset.ps1 "scrutiny-collector-metrics-windows-4.0-amd64.exe"
 
