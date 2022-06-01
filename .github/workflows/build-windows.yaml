@@ -14,7 +14,7 @@ on:
 # split into multiple builds, otherwise the runner runs out of disk space...
 # and docker-compose push fails with exitcode 1, so push manually
 jobs:
-  build:
+  build_win2019:
     permissions:
       contents: read
       packages: write
@@ -25,6 +25,21 @@ jobs:
         working-directory: .
         run: |
           docker login ghcr.io -u ${{github.actor}} -p ${{ secrets.GITHUB_TOKEN }}
-          docker build -t ghcr.io/analogj/scrutiny_windows_test .
-          docker image push ghcr.io/analogj/scrutiny_windows_test
+          docker build --build-arg WINDOWS_IMAGE_TAG=ltsc2019 -t ghcr.io/analogj/scrutiny_windows_test .
+          docker image push ghcr.io/analogj/scrutiny_windows_test:ltsc2019
+          docker logout
+
+  build_win2022:
+    permissions:
+      contents: read
+      packages: write
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@master
+      - name: Build and push console
+        working-directory: .
+        run: |
+          docker login ghcr.io -u ${{github.actor}} -p ${{ secrets.GITHUB_TOKEN }}
+          docker build --build-arg WINDOWS_IMAGE_TAG=ltsc2022 -t ghcr.io/analogj/scrutiny_windows_test .
+          docker image push ghcr.io/analogj/scrutiny_windows_test:ltsc2022
           docker logout
